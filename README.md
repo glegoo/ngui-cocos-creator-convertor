@@ -26,4 +26,4 @@ CocosCreator版本: 1.9.0
 ![](https://github.com/glegoo/ngui-cocos-creator-convertor/blob/master/example.gif?raw=true)
 
 ## 如果这对你有帮助, 可以请我吃一顿黄焖鸡米饭 :curry:
-![](https://github.com/glegoo/ngui-cocos-creator-convertor/blob/master/hmj.png?raw=true){:height="50%" width="50%"}
+![](https://github.com/glegoo/ngui-cocos-creator-convertor/blob/master/hmj.png?raw=true)
