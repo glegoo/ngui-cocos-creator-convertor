@@ -1,0 +1,20 @@
+{
+  "name": "prefab-creator",
+  "version": "0.0.1",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "scene-script": "prefab-creator.js",
+  "main-menu": {
+    "i18n:MAIN_MENU.package.title/Prefab生成工具": {
+      "message": "prefab-creator:open"
+    }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "prefab-creator",
+    "width": 400,
+    "height": 300
+  }
+}
