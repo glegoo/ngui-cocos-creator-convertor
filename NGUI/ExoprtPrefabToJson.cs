@@ -1,9 +1,3 @@
-/*
-注意事项:
-节点按照驼峰命名,否则无法达到最佳效果. 如: labText, sprIcon, btnCloseWindow;
-所有lab开头(大小写敏感, 下同)的UILabel, spr开头的UISprite, btn开头包含碰撞的节点为自动生成代码对象;
-by wcheng
- */
 using UnityEditor;
 using UnityEngine;
 using System.IO;
@@ -11,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using LitJson;
 
-public class ExportLuaUI : Editor
+public class ExportPrefabToJson : Editor
 {
     delegate bool Filter(Component component);
 

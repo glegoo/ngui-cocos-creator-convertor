@@ -10,10 +10,11 @@ CocosCreator版本: 1.9.0
 将Unity中prefab的节点父子结构, 以及节点上NGUI的UISprite, UILabel, UITexture等控件的有用信息保存至json文件. 在CocosCreator中解析后再创建.
 
 目前可移植项:
-> * 节点: position, scale, rotation(仅z轴)
+> * 节点: position, scale, rotation(仅z轴), active, name
 > * UIWidget: 锚点信息, 宽高, 颜色
 > * UISprite, UITexture: 图集, 图片, 是否使用Slice, 九宫格Border信息
 > * UILabel: 字号, 描边颜色宽度, overflow
+> * 带有BoxCollider的节点会被挂载UIButton
 
 可以覆盖大部分需求.
 
