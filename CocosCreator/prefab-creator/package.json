@@ -14,7 +14,7 @@
     "main": "panel/index.js",
     "type": "dockable",
     "title": "prefab-creator",
-    "width": 400,
+    "width": 386,
     "height": 300
   }
 }

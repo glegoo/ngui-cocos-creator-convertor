@@ -1,28 +1,40 @@
+const cp = require('child_process');
+
 // panel/index.js, this filename needs to match the one registered in package.json
 Editor.Panel.extend({
 	// css style for panel
 	style: `
-    :host { margin: 5px; }
+    @import url('app://bower_components/fontawesome/css/font-awesome.min.css');
     h2 { color: #f90; }
   `,
 
 	// html template for panel
 	template: `
-    <h2>Prefab生成工具</h2>
+	<title>Prefab生成工具</title>
     <hr />
     <h3>Prefab保存路径</h3>
-    <ui-input style="width: 200px;" placeholder="路径..." readonly v-value="savePath"></ui-input>
-	<ui-button @confirm="onPathClicked">选择</ui-button>
+	<div style="display:flex;">
+    <ui-input class="flex-1" placeholder="路径..." readonly v-value="savePath"></ui-input>
+	<ui-button class="transparent" @confirm="onTextureFolderClicked"><i class="fa fa-folder-open"></i></ui-button>
+	</div>
 	
-    <hr />
     <h3>图片资源目录</h3>
-    <ui-input style="width: 200px;" placeholder="路径..." readonly v-value="textureFolder"></ui-input>
-	<ui-button @confirm="onTextureFolderClicked">选择</ui-button>
+	<div style="display:flex;">
+    <ui-input class="flex-1" placeholder="路径..." readonly v-value="textureFolder"></ui-input>
+	<ui-button class="transparent" @confirm="onTextureFolderClicked"><i class="fa fa-folder-open"></i></ui-button>
+	</div>
 
-    <hr />
     <h3>导入Json</h3>
-    <ui-asset style="width: 200px;" v-value="json" type="text"></ui-asset>   
-	<ui-button @confirm="onCreateClicked">生成</ui-button>
+	<div style="display:flex;">
+		<ui-asset class="flex-1 v-value="json" type="text"></ui-asset>   
+		<ui-button class="transparent" @confirm="onCreateClicked"><i class="fa fa-magic"></i></ui-button>
+	</div>
+	
+    <br/>
+
+	<div style="font-size: 14px; cursor:pointer;" @click="gitHub">
+        <i class="fa fa-github"> https://github.com/glegoo/ngui-cocos-creator-convertor </i>
+    </div>
 
   `,
 
@@ -88,6 +100,10 @@ Editor.Panel.extend({
 					}
 					return path
 				},
+
+				gitHub() {
+					cp.exec('start https://github.com/glegoo/ngui-cocos-creator-convertor');
+				}
 			}
 		})
 	},
