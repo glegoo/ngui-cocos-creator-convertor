@@ -4,6 +4,14 @@ module.exports = {
     // prefabs: null,
     'create': function (event, info) {
         this.show(info)
+        if (!info.json){            
+            Editor.Dialog.messageBox({
+                title: '错误',
+                type: 'error',
+                message: '请选择Json文件!'
+            })
+            return
+        }
         const callback = () => {
             this.editPrefab(info.json, info.savePath)
         }
@@ -163,35 +171,6 @@ module.exports = {
 
     setSpriteFrame(sprite, atlas, name) {
         sprite.spriteFrame = this.textureMap[name]
-    },
-
-    openSelectSaveFolder(defaultPath) {
-        let path = null
-
-        if (!defaultPath) {
-            defaultPath = Editor.projectInfo.path + '/assets'
-        }
-
-        let selectPath = Editor.Dialog.openFile({
-            defaultPath: defaultPath,
-            properties: ['openDirectory'],
-            title: '请选择保存路径'
-        })
-
-        if (selectPath !== -1) {
-            selectPath = String(selectPath)
-            if (!selectPath.includes(Editor.projectInfo.path + '\\assets')) {
-                Editor.Dialog.messageBox({
-                    title: '提示',
-                    type: 'warning',
-                    message: '请选择游戏工程assets文件夹下的目录!'
-                })
-            }
-            else {
-                path = selectPath
-            }
-        }
-        return path
     },
 
     // main.js中可以打印出完整结构
