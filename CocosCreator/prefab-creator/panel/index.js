@@ -15,7 +15,7 @@ Editor.Panel.extend({
     <h3>Prefab保存路径</h3>
 	<div style="display:flex;">
     <ui-input class="flex-1" placeholder="路径..." readonly v-value="savePath"></ui-input>
-	<ui-button class="transparent" @confirm="onTextureFolderClicked"><i class="fa fa-folder-open"></i></ui-button>
+	<ui-button class="transparent" @confirm="onPathClicked"><i class="fa fa-folder-open"></i></ui-button>
 	</div>
 	
     <h3>图片资源目录</h3>
@@ -26,7 +26,7 @@ Editor.Panel.extend({
 
     <h3>导入Json</h3>
 	<div style="display:flex;">
-		<ui-asset class="flex-1 v-value="json" type="text"></ui-asset>   
+		<ui-asset style="flex:1;" v-value="json" type="text"></ui-asset>   
 		<ui-button class="transparent" @confirm="onCreateClicked"><i class="fa fa-magic"></i></ui-button>
 	</div>
 	
