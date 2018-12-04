@@ -19,7 +19,7 @@ CocosCreator版本: 1.9.0
 可以覆盖大部分需求.
 
 # 使用方法
-1. 将 **ExoprtPrefabToJson.cs** 放至Unity工程Editor目录下. 在Prefab上右键导出Json文件.
+1. 将 **Unity** 文件夹内文件放至Unity工程内. 在Prefab上右键导出Json文件.
 2. 将 **prefab-creator** 文件夹放至CocosCreator工程packages目录下. 在扩展菜单中选择 **Prefab生成工具** 打开扩展窗口. 配置导出路径以及图片文件夹. 图片文件夹内放入需要的资源, 支持图集和散图, **图集文件名/图集内图片文件名/散图文件名要与Unity端一致!!!**. 之后拖入第一步导出的Json文件, 点生成即可. 
 3. 首次创建时需要加载文件夹内的所有图片, 根据图片数量可能需要较长时间. 所以建议移除文件夹内的无用图片资源.
 
