@@ -83,7 +83,8 @@ public class ExportPrefabToJson : Editor
                     cj["spacingX"] = label.spacingX;
                     cj["spacingY"] = label.spacingY;
 
-                    if (label.bitmapFont){
+                    if (label.bitmapFont)
+                    {
                         // Debug.Log(label.bitmapFont.name);
                         cj["bitmapFont"] = label.bitmapFont.name;
                     }
@@ -133,6 +134,27 @@ public class ExportPrefabToJson : Editor
         if (boxes.Length > 0)
         {
             node["button"] = true;
+        }
+
+        UIScrollView sv = go.GetComponent<UIScrollView>();
+        if (sv)
+        {
+            UIPanel panel = go.GetComponent<UIPanel>();
+            node["scrollView"] = new JsonData();
+            node["scrollView"]["offset"] = new JsonData();
+            node["scrollView"]["offset"]["x"] = panel.clipOffset.x + panel.finalClipRegion.x;
+            node["scrollView"]["offset"]["y"] = panel.clipOffset.y + panel.finalClipRegion.y;
+            node["scrollView"]["size"] = new JsonData();
+            node["scrollView"]["size"]["x"] = panel.finalClipRegion.z;
+            node["scrollView"]["size"]["y"] = panel.finalClipRegion.w;
+            node["scrollView"]["movement"] = (int)sv.movement;
+        }
+
+        UIGrid grid = go.GetComponent<UIGrid>();
+        if (grid && grid.enabled)
+        {
+            node["grid"] = new JsonData();
+            node["grid"]["arrangement"] = (uint)grid.arrangement;
         }
 
         if (go.transform.childCount > 0)

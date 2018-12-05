@@ -8,6 +8,19 @@ FillDirection = {
     Radial360: 4,
 }
 
+Movement = {
+    Horizontal: 0,
+    Vertical: 1,
+    Unrestricted: 2,
+    Custom: 3
+}
+
+Arrangement = {
+    Horizontal: 0,
+    Vertical: 1,
+    CellSnap: 2
+}
+
 module.exports = {
     // prefabs: null,
     'create': function (event, info) {
@@ -50,6 +63,10 @@ module.exports = {
         Editor.assetdb.queryAssets(folder + '/**\/*', "sprite-frame", function (err, results) {
             if (err) {
                 throw err
+            }
+            if (results.length == 0) {
+                if (callback) callback()
+                return
             }
             let count = 0
             results.forEach(function (result, index) {
@@ -212,22 +229,64 @@ module.exports = {
 
             if (info.button) node.addComponent(cc.Button)
 
-            if (info.children) {
-                // 子节点按depth排序
-                if (info.name === 'PopUp'){
-                    this.show(info.children)
+            if (info.scrollView) {
+                let sv = node.addComponent(cc.ScrollView)
+                if (sv.movement === Movement.Horizontal) {
+                    sv.horizontal = true
+                } else if (sv.movement === Movement.Horizontal) {
+                    sv.vertical = true
                 }
+
+                // 使上对齐
+                node.anchorY = 1
+                node.width = info.scrollView.size.x
+                node.height = info.scrollView.size.y
+                info.pos.x += info.scrollView.offset.x
+                info.pos.y += info.scrollView.offset.y + node.height / 2
+
+                // 添加遮罩子节点
+                let mask = new cc.Node('mask')
+                mask.addComponent(cc.Mask)
+                mask.setParent(node)
+                mask.width = node.width
+                mask.height = node.height
+                mask.anchorY = 1
+                mask.position = cc.Vec2.ZERO
+            }
+
+            if (info.grid) {
+                let layout = node.addComponent(cc.Layout)
+                layout.resizeMode = cc.Layout.ResizeMode.CONTAINER
+                if (info.grid.arrangement === Arrangement.Horizontal) {
+                    layout.type = cc.Layout.Type.HORIZONTAL
+                } else if (info.grid.arrangement === Arrangement.Vertical) {
+                    layout.type = cc.Layout.Type.VERTICAL
+                }
+                // 如果是scroll view的内容
+                if (node.parent.name == 'mask') {
+                    info.pos.x = 0
+                    info.pos.y = 0
+                    node.width = node.parent.width
+                    node.anchorY = 1
+                    let sv = node.parent.parent.getComponent(cc.ScrollView)
+                    if (sv) {
+                        sv.content = node
+                    }
+                }
+            }
+
+            if (info.children) {
+                // 如果是ScrollView 子节点添加到mask下
+                let childsParent = info.scrollView ? node.children[0] : node
+
                 info.children.sort((a, b) => {
                     let aDepth = a.components ? a.components[0].depth : info.children.indexOf(a)
                     let bDepth = b.components ? b.components[0].depth : info.children.indexOf(b)
                     return aDepth - bDepth
                 })
-                if (info.name === 'PopUp'){
-                    this.show(info.children)
-                }
                 info.children.forEach(child => {
                     let childNode = new cc.Node(child.name)
-                    childNode.setParent(node)
+                    childNode.setParent(childsParent)
                     this.editNode(child, childNode)
                 });
             }

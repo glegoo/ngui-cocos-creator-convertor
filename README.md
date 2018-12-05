@@ -16,6 +16,7 @@ CocosCreator版本: 1.9.0
 > * UILabel: 字号, 描边颜色宽度, overflow, 对齐方式, 行间距, bitmap字体(字间距)
 > * 带有BoxCollider的节点会被挂载UIButton
 > * 子节点按UIWidget的depth排序
+> * ScrollView + Grid: 不完美移植,由于两方控件区别较大, 暂时没想到什么好方法完美移植. 现阶段支持使用最多的竖排列表的移植, 移植后需微调间距等数值.
 
 可以覆盖大部分需求.
 
