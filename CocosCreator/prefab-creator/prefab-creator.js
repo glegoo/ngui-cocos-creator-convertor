@@ -24,11 +24,23 @@ module.exports = {
             this.editPrefab(info.json, info.savePath)
         }
 
-        if (!this.textureMap) {
-            this.loadTextures(info.textureFolder, callback)
+        if (!this.textureMap || !this.fontMap) {
+            this.loadResources(info.textureFolder, info.fontFolder, callback)
         }
         else {
             callback()
+        }
+    },
+
+    loadResources(textureFolder, fontFolder, callback) {
+        if (!this.textureMap) {
+            this.loadTextures(textureFolder, () => {
+                if (!this.fontMap) {
+                    this.loadFonts(fontFolder, callback)
+                } else if (!callback) {
+                    callback()
+                }
+            })
         }
     },
 
@@ -50,6 +62,33 @@ module.exports = {
                     Editor.log('图片资源加载...' + count + '/' + results.length)
                     if (count === results.length) {
                         Editor.log('图片资源加载完成!')
+                        if (callback) {
+                            callback()
+                        }
+                    }
+                })
+            })
+        })
+    },
+
+    loadFonts(folder, callback) {
+        Editor.log('开始加载字体')
+        let self = this
+        Editor.assetdb.queryAssets(folder + '/**\/*', "bitmap-font", function (err, results) {
+            if (err) {
+                throw err
+            }
+            let count = 0
+            results.forEach(function (result, index) {
+                self.fontMap = {}
+                cc.AssetLibrary.loadAsset(result.uuid, function (error, asset) {
+                    let ext = path.extname(result.path)
+                    let filename = path.basename(result.path, ext)
+                    self.fontMap[filename] = asset
+                    count++
+                    Editor.log('字体资源加载...' + count + '/' + results.length)
+                    if (count === results.length) {
+                        Editor.log('字体资源加载完成!')
                         if (callback) {
                             callback()
                         }
@@ -159,6 +198,11 @@ module.exports = {
                             label.horizontalAlign = cc.Label.HorizontalAlign.LEFT
                         } else {
                             label.horizontalAlign = cc.Label.HorizontalAlign.CENTER
+                        }
+
+                        if (element.bitmapFont){
+                            label.spacingX = element.spacingX
+                            label.font = this.fontMap[element.bitmapFont]
                         }
                     }
 

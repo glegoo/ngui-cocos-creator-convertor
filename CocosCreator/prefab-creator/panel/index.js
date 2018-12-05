@@ -24,6 +24,12 @@ Editor.Panel.extend({
 	<ui-button class="transparent" @confirm="onTextureFolderClicked"><i class="fa fa-folder-open"></i></ui-button>
 	</div>
 
+    <h3>字体资源目录</h3>
+	<div style="display:flex;">
+    <ui-input class="flex-1" placeholder="路径..." readonly v-value="fontFolder"></ui-input>
+	<ui-button class="transparent" @confirm="onFontFolderClicked"><i class="fa fa-folder-open"></i></ui-button>
+	</div>
+
     <h3>导入Json</h3>
 	<div style="display:flex;">
 		<ui-asset style="flex:1;" v-value="json" type="text"></ui-asset>   
@@ -46,17 +52,20 @@ Editor.Panel.extend({
 				json: "",
 				savePath: "",
 				textureFolder: "",
+				fontFolder: "",
 			},
 			created: function () {
 				this.savePath = "db://assets/"
 				this.textureFolder = "db://assets/"
+				this.fontFolder = "db://assets/"
 			},
 			methods: {
 				onCreateClicked(event) {
 					Editor.Scene.callSceneScript('prefab-creator', 'create', {
 						json: this.json,
 						savePath: this.savePath,
-						textureFolder: this.textureFolder
+						textureFolder: this.textureFolder,
+						fontFolder: this.fontFolder
 					});
 				},
 
@@ -71,6 +80,13 @@ Editor.Panel.extend({
 					let path = this._openSelectSaveFolder(this.textureFolder)
 					if (path) {
 						this.textureFolder = path
+					}
+				},
+
+				onFontFolderClicked(event) {
+					let path = this._openSelectSaveFolder(this.fontFolder)
+					if (path) {
+						this.fontFolder = path
 					}
 				},
 

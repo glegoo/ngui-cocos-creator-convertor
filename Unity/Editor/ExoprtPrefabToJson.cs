@@ -79,7 +79,14 @@ public class ExportPrefabToJson : Editor
                         cj["outlineColor"] = ColorUtility.ToHtmlStringRGB(label.effectColor);
                         cj["outlineWidth"] = label.effectiveSpacingX;
                     }
+                    
+                    cj["spacingX"] = label.spacingX;
                     cj["spacingY"] = label.spacingY;
+
+                    if (label.bitmapFont){
+                        // Debug.Log(label.bitmapFont.name);
+                        cj["bitmapFont"] = label.bitmapFont.name;
+                    }
                 }
 
                 if (comp is UISprite)
@@ -99,7 +106,7 @@ public class ExportPrefabToJson : Editor
                         cj["border"]["right"] = sprite.border.z;
                         cj["border"]["top"] = sprite.border.w;
                         cj["border"]["bottom"] = sprite.border.y;
-                        Debug.Log("border: " + sprite.spriteName + " node: " + go.name);
+                        // Debug.Log("border: " + sprite.spriteName + " node: " + go.name);
                     }
 
                     if (sprite.type == UIBasicSprite.Type.Filled)
