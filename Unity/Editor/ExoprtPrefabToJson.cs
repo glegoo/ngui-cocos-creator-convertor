@@ -100,6 +100,11 @@ public class ExportPrefabToJson : Editor
                         cj["border"]["bottom"] = sprite.border.y;
                         Debug.Log("border: " + sprite.spriteName + " node: " + go.name);
                     }
+
+                    if (sprite.type == UIBasicSprite.Type.Filled)
+                    {
+                        cj["fillDir"] = (uint)sprite.fillDirection;
+                    }
                 }
 
                 if (comp is UITexture)

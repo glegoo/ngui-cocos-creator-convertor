@@ -1,10 +1,18 @@
 let path = require('fire-path');
 
+FillDirection = {
+    Horizontal: 0,
+    Vertical: 1,
+    Radial90: 2,
+    Radial180: 3,
+    Radial360: 4,
+}
+
 module.exports = {
     // prefabs: null,
     'create': function (event, info) {
         this.show(info)
-        if (!info.json){            
+        if (!info.json) {
             Editor.Dialog.messageBox({
                 title: '错误',
                 type: 'error',
@@ -103,6 +111,16 @@ module.exports = {
                             }
                         }
                         if (element.spType == "Sliced") spr.type = cc.Sprite.Type.SLICED
+                        
+                        if (element.spType == "Filled") {
+                            spr.type = cc.Sprite.Type.FILLED
+                            if (spr.fillDir === FillDirection.Horizontal){
+                                spr.fillType = cc.Sprite.FillType.HORIZONTAL
+                            }
+                            if (spr.fillDir === FillDirection.Vertical){
+                                spr.fillType = cc.Sprite.FillType.VERTICAL
+                            }
+                        }
                     }
 
                     // 在label设置overflow前设置宽高
