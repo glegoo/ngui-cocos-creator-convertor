@@ -79,6 +79,7 @@ public class ExportPrefabToJson : Editor
                         cj["outlineColor"] = ColorUtility.ToHtmlStringRGB(label.effectColor);
                         cj["outlineWidth"] = label.effectiveSpacingX;
                     }
+                    cj["spacingY"] = label.spacingY;
                 }
 
                 if (comp is UISprite)

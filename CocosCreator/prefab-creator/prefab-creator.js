@@ -131,7 +131,7 @@ module.exports = {
                         let label = node.addComponent(cc.Label)
                         label.string = element.text
                         label.fontSize = element.fontSize
-                        label.lineHeight = element.fontSize
+                        label.lineHeight = element.fontSize + element.spacingY
                         if (element.overflow === "ShrinkContent") {
                             label.overflow = cc.Label.Overflow.SHRINK
                         } else if (element.overflow === "ResizeHeight") {
