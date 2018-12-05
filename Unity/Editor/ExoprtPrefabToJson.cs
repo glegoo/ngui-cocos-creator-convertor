@@ -65,7 +65,7 @@ public class ExportPrefabToJson : Editor
                 cj["size"]["width"] = comp.width;
                 cj["size"]["height"] = comp.height;
                 cj["color"] = ColorUtility.ToHtmlStringRGB(comp.color);
-
+                cj["depth"] = comp.depth;
                 cj["pivot"] = comp.pivot.ToString();
 
                 if (comp is UILabel)
@@ -79,7 +79,7 @@ public class ExportPrefabToJson : Editor
                         cj["outlineColor"] = ColorUtility.ToHtmlStringRGB(label.effectColor);
                         cj["outlineWidth"] = label.effectiveSpacingX;
                     }
-                    
+
                     cj["spacingX"] = label.spacingX;
                     cj["spacingY"] = label.spacingY;
 

@@ -200,7 +200,7 @@ module.exports = {
                             label.horizontalAlign = cc.Label.HorizontalAlign.CENTER
                         }
 
-                        if (element.bitmapFont){
+                        if (element.bitmapFont) {
                             label.spacingX = element.spacingX
                             label.font = this.fontMap[element.bitmapFont]
                         }
@@ -213,6 +213,18 @@ module.exports = {
             if (info.button) node.addComponent(cc.Button)
 
             if (info.children) {
+                // 子节点按depth排序
+                if (info.name === 'PopUp'){
+                    this.show(info.children)
+                }
+                info.children.sort((a, b) => {
+                    let aDepth = a.components ? a.components[0].depth : info.children.indexOf(a)
+                    let bDepth = b.components ? b.components[0].depth : info.children.indexOf(b)
+                    return aDepth - bDepth
+                })
+                if (info.name === 'PopUp'){
+                    this.show(info.children)
+                }
                 info.children.forEach(child => {
                     let childNode = new cc.Node(child.name)
                     childNode.setParent(node)

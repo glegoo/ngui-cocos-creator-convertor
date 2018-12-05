@@ -15,6 +15,7 @@ CocosCreator版本: 1.9.0
 > * UISprite, UITexture: 图集, 图片, 是否使用Slice, 九宫格Border信息
 > * UILabel: 字号, 描边颜色宽度, overflow, 对齐方式, 行间距, bitmap字体(字间距)
 > * 带有BoxCollider的节点会被挂载UIButton
+> * 子节点按UIWidget的depth排序
 
 可以覆盖大部分需求.
 
