@@ -111,13 +111,13 @@ module.exports = {
                             }
                         }
                         if (element.spType == "Sliced") spr.type = cc.Sprite.Type.SLICED
-                        
+
                         if (element.spType == "Filled") {
                             spr.type = cc.Sprite.Type.FILLED
-                            if (spr.fillDir === FillDirection.Horizontal){
+                            if (spr.fillDir === FillDirection.Horizontal) {
                                 spr.fillType = cc.Sprite.FillType.HORIZONTAL
                             }
-                            if (spr.fillDir === FillDirection.Vertical){
+                            if (spr.fillDir === FillDirection.Vertical) {
                                 spr.fillType = cc.Sprite.FillType.VERTICAL
                             }
                         }
@@ -131,6 +131,7 @@ module.exports = {
                         let label = node.addComponent(cc.Label)
                         label.string = element.text
                         label.fontSize = element.fontSize
+                        label.lineHeight = element.fontSize
                         if (element.overflow === "ShrinkContent") {
                             label.overflow = cc.Label.Overflow.SHRINK
                         } else if (element.overflow === "ResizeHeight") {
@@ -140,6 +141,24 @@ module.exports = {
                             let outline = node.addComponent(cc.LabelOutline)
                             outline.color = this.hex2color(element.outlineColor)
                             outline.width = element.outlineWidth
+                            // 防止描边被切掉
+                            label.lineHeight = label.lineHeight + outline.width * 2
+                        }
+
+                        if (element.pivot.includes('Top')) {
+                            label.verticalAlign = cc.Label.VerticalAlign.TOP
+                        } else if (element.pivot.includes('Bottom')) {
+                            label.verticalAlign = cc.Label.VerticalAlign.BOTTOM
+                        } else {
+                            label.verticalAlign = cc.Label.VerticalAlign.CENTER
+                        }
+
+                        if (element.pivot.includes('Right')) {
+                            label.horizontalAlign = cc.Label.HorizontalAlign.RIGHT
+                        } else if (element.pivot.includes('Left')) {
+                            label.horizontalAlign = cc.Label.HorizontalAlign.LEFT
+                        } else {
+                            label.horizontalAlign = cc.Label.HorizontalAlign.CENTER
                         }
                     }
 
