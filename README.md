@@ -13,7 +13,7 @@ CocosCreator版本: 1.9.0
 > * 节点: position, scale, rotation(仅z轴), active, name
 > * UIWidget: 锚点信息, 宽高, 颜色
 > * UISprite, UITexture: 图集, 图片, 是否使用Slice, 九宫格Border信息
-> * UILabel: 字号, 描边颜色宽度, overflow, 对齐方式, 行间距
+> * UILabel: 字号, 描边颜色宽度, overflow, 对齐方式, 行间距, bitmap字体(字间距)
 > * 带有BoxCollider的节点会被挂载UIButton
 
 可以覆盖大部分需求.
