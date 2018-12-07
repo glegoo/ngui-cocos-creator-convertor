@@ -149,9 +149,9 @@ module.exports = {
                     }
 
                     if (element.pivot.includes('Right')) {
-                        node.anchorY = 1
+                        node.anchorX = 1
                     } else if (element.pivot.includes('Left')) {
-                        node.anchorY = 0
+                        node.anchorX = 0
                     }
 
                     if (element.type == "UISprite" || element.type == "UITexture") {
