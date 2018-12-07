@@ -232,9 +232,9 @@ module.exports = {
             if (info.scrollView) {
                 let sv = node.addComponent(cc.ScrollView)
                 if (sv.movement === Movement.Horizontal) {
-                    sv.horizontal = true
+                    sv.vertical = false
                 } else if (sv.movement === Movement.Horizontal) {
-                    sv.vertical = true
+                    sv.horizontal = false
                 }
 
                 // 使上对齐
