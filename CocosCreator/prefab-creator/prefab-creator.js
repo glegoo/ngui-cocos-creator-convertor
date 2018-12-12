@@ -1,24 +1,24 @@
 let path = require('fire-path');
 
-FillDirection = {
-    Horizontal: 0,
-    Vertical: 1,
-    Radial90: 2,
-    Radial180: 3,
-    Radial360: 4,
-}
-
-Movement = {
+const Movement = {
     Horizontal: 0,
     Vertical: 1,
     Unrestricted: 2,
     Custom: 3
 }
 
-Arrangement = {
+const Arrangement = {
     Horizontal: 0,
     Vertical: 1,
     CellSnap: 2
+}
+
+const FillDirection = {
+    Horizontal: 0,
+    Vertical: 1,
+    Radial90: 2,
+    Radial180: 3,
+    Radial360: 4,
 }
 
 module.exports = {
