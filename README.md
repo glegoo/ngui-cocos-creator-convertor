@@ -28,5 +28,5 @@ CocosCreator版本: 1.9.0
 # 效果预览
 ![](https://github.com/glegoo/ngui-cocos-creator-convertor/blob/master/example.gif?raw=true)
 
-## 领个红包支持一下吧:moneybag:
+## 如果这帮到你请我喝杯咖啡吧~:coffee:
 ![](https://github.com/glegoo/ngui-cocos-creator-convertor/blob/master/hmj.png?raw=true)
