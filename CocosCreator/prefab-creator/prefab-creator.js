@@ -49,7 +49,7 @@ module.exports = {
         if (!this.textureMap) {
             this.loadTextures(textureFolder, () => {
                 if (!this.fontMap) {
-                    this.loadFonts(fontFolder, callback)
+                    this.loadFonts(fontFolder, (callback))
                 } else if (!callback) {
                     callback()
                 }
@@ -94,6 +94,10 @@ module.exports = {
         Editor.assetdb.queryAssets(folder + '/**\/*', "bitmap-font", function (err, results) {
             if (err) {
                 throw err
+            }
+            if (results.length == 0) {
+                if (callback) callback()
+                return
             }
             let count = 0
             results.forEach(function (result, index) {
@@ -219,7 +223,9 @@ module.exports = {
 
                         if (element.bitmapFont) {
                             label.spacingX = element.spacingX
-                            label.font = this.fontMap[element.bitmapFont]
+                            if (this.fontMap) {
+                                label.font = this.fontMap[element.bitmapFont]
+                            }
                         }
                     }
 
@@ -322,7 +328,9 @@ module.exports = {
     },
 
     setSpriteFrame(sprite, atlas, name) {
-        sprite.spriteFrame = this.textureMap[name]
+        if (this.textureMap) {
+            sprite.spriteFrame = this.textureMap[name]
+        }
     },
 
     // main.js中可以打印出完整结构
