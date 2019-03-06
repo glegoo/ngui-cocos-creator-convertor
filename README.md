@@ -2,9 +2,9 @@
 需求将Unity项目移植到CocosCreator(H5). 如果UI全部重拼一遍太费时费力. 故抽出时间写了这个扩展. 用于Unity NGUI制作的UI prefab移植到Cocos Creator.
 
 NGUI版本: 3.8.2<br>
-CocosCreator版本: 1.9.0
-
-暂时没精力顾及其他版本, 只用到一些基础方法, 如果有API变动请自行修改.
+CocosCreator版本: 
+> * 1.9.x使用 **CocosCreator** 中的插件
+> * 1.10.x及2.x使用 **CocosCreator_1.10_2.x** 中的插件
 
 # 工作原理
 将Unity中prefab的节点父子结构, 以及节点上NGUI的UISprite, UILabel, UITexture等控件的有用信息保存至json文件. 在CocosCreator中解析后再创建.
@@ -29,4 +29,4 @@ CocosCreator版本: 1.9.0
 ![](https://github.com/glegoo/ngui-cocos-creator-convertor/blob/master/example.gif?raw=true)
 
 ## 如果这帮到你请我喝杯咖啡吧~:coffee:
-![](https://github.com/glegoo/ngui-cocos-creator-convertor/blob/master/hmj.png?raw=true)
+![](https://github.com/glegoo/ngui-cocos-creator-convertor/blob/master/hmj.png?raw=true&v=2)
